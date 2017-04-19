@@ -12,6 +12,10 @@ AM uzi IBB
 	return UziIBB;
 }
 
+uzi boi{
+	IBB++;
+}
+
 
 catfish is life
 {
