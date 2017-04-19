@@ -1,9 +1,20 @@
 lel
 how
+method hello{
+	int number = 10;
+}
 hello
+
  
 AM uzi IBB
 {	
 	IBB++;
 	return UziIBB;
 }
+
+
+catfish is life
+{
+	return Uzi;
+}
+
