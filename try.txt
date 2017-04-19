@@ -11,7 +11,10 @@ AM uzi IBB
 	IBB++;
 	return UziIBB;
 }
-
+king is uzi 
+{
+	uzi is king = true;
+}
 
 catfish is life
 {
