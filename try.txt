@@ -8,7 +8,7 @@ hello
  
 AM uzi IBB
 {	
-	IBB++;
+	IBB--;
 	return UziIBB;
 }
 
