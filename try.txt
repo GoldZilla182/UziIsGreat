@@ -1,7 +1,10 @@
 lel
 how
+method hello{
+	int number = 10;
+}
 hello
- 
+
 catfish is life
 {
 	return Uzi;
