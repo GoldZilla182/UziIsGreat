@@ -2,7 +2,8 @@ lel
 how
 hello
  
-catfish is life
-{
-	return Uzi;
+AM uzi IBB
+{	
+	IBB++;
+	return UziIBB;
 }
