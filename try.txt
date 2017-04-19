@@ -8,13 +8,21 @@ hello
  
 AM uzi IBB
 {	
-	IBB++;
+	IBB--;
 	return UziIBB;
 }
+<<<<<<< HEAD
 king is uzi 
 {
 	uzi is king = true;
 }
+=======
+
+uzi boi{
+	IBB++;
+}
+
+>>>>>>> b411e27d13116843080e73940ea7824729df8d28
 
 catfish is life
 {
