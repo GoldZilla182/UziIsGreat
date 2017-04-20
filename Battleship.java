@@ -63,7 +63,7 @@ public class Battleship
 				y = kb.nextInt();
 				kb.nextLine();
 				System.out.println("Ok, now enter the row letter (uppercase only) for the end point of your " + b.getShip(index - 1));
-				x1 = kb.nextLine().toLowerCase();
+				x1 = kb.nextLine().toUpperCase();
 				System.out.println("Complete this placement by providing the column number for the end point of your " + b.getShip(index - 1));
 				y1 = kb.nextInt();
 				kb.nextLine();
@@ -83,7 +83,6 @@ public class Battleship
 		}
 		else
 		{
-			System.out.println(p1.getName() + ", your fleet has been sunk." + "\n"
 			System.out.println(p1.getName() + ", your entire fleet has been sunk." + "\n"
 					+ p2.getName() + " has won the game.");
 		}
