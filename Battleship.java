@@ -145,7 +145,7 @@ public class Battleship
 						b1.trueStrike(b2.getBoard());
 						for(int i = 4; i > -1; i--)
 						{
-							if(b2.getFleet(i) == false)
+							if(!(b2.getFleet(i)))
 							{
 								System.out.println("You sunk a "+b2.getShip(i));
 								
@@ -154,7 +154,7 @@ public class Battleship
 						
 						for(int j = 0; j < 5; j++)
 						{
-							if(b2.getFleet(j) == false)
+							if(!(b2.getFleet(j)))
 							{
 								fleetStatus = false; 
 							}
@@ -188,15 +188,15 @@ public class Battleship
 						b1.trueStrike(b2.getBoard());
 						for(int i = 4; i > -1; i--)
 						{
-							if(b2.getFleet(i) == false)
+							if(!(b2.getFleet(i)))
 							{
-								System.out.println("Sunk");
+								System.out.println("You sunk a "+b2.getShip(i));
 							}
 						}
 						
 						for(int k = 0; k < 5; k++)
 						{
-							if(b2.getFleet(k) == false)
+							if(!(b2.getFleet(k)))
 							{
 								fleetStatus = false; 
 							}
@@ -215,9 +215,6 @@ public class Battleship
 						}
 					}
 						
-					
-					
-				
 			}
 		}
 

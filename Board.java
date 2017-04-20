@@ -148,7 +148,7 @@ public class Board
                     Flag = false;
                 }
 
-                if (Flag == false)
+                if (!Flag)
                 {
                     System.out.println("You are overwriting your boats, change coordinates.");
                 }
@@ -190,30 +190,79 @@ public class Board
 		{
 			fleetIntact[k] = false;
 		}
-		for(int i = 0; i < board.length; i++)
+		for(int[] i: board)
 		{
-			for(int j = 0; i < board[i].length; j++)
+			for(int j: i)
 			{
-				switch(board[i][j])
+				if(j == 5)
 				{
-				case 5:
 					fleetIntact[4] = true;
 					break;
-				case 4:
+				}
+				
+			}
+			
+			
+		}
+		
+		for(int[] i: board)
+		{
+			for(int j: i)
+			{
+				if(j == 4)
+				{
 					fleetIntact[3] = true;
 					break;
-				case 3:
+				}
+				
+			}
+			
+			
+		}
+		
+		for(int[] i: board)
+		{
+			for(int j: i)
+			{
+				if(j == 3)
+				{
 					fleetIntact[2] = true;
 					break;
-				case 2:
+				}
+				
+			}
+			
+			
+		}
+		
+		for(int[] i: board)
+		{
+			for(int j: i)
+			{
+				if(j == 2)
+				{
 					fleetIntact[1] = true;
 					break;
-				case 1:
+				}
+				
+			}
+			
+			
+		}
+		
+		for(int[] i: board)
+		{
+			for(int j: i)
+			{
+				if(j == 1)
+				{
 					fleetIntact[0] = true;
 					break;
 				}
 				
 			}
+			
+			
 		}
 	}
 	
