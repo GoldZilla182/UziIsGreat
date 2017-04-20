@@ -41,23 +41,34 @@ public class Battleship
 		Scanner kb = new Scanner(System.in);
 		String x, x1;
 		int y,y1;
-		for(int index = 1; index < 6; index++)
-		{	
-			b.printBoard();
-			boolean Flag = false;
-			while(!Flag) {
+		System.out.println("Do you want to use the automatic positioning?(Y/N)");
+		String response = kb.nextLine().toUpperCase();
+
+		if(response.equals("Y"))
+		{
+			for (int index = 1; index < 6; index ++)
+			{
+				b.automaticPlaceShip(index, b.getBoard());
+			}
+		}
+		else {
+			for (int index = 1; index < 6; index++) {
+				b.printBoard();
+				boolean Flag = false;
+				while(!Flag) {
 				System.out.println(p.getName() + ", it is time to place your " + b.getShip(index - 1) + "\n"
 						+ "Enter the row letter (uppercase only) for the start point of your " + b.getShip(index - 1));
-				x = kb.nextLine();
+				x = kb.nextLine().toUpperCase();
 				System.out.println("Enter the column number for the start point of your " + b.getShip(index - 1));
 				y = kb.nextInt();
 				kb.nextLine();
 				System.out.println("Ok, now enter the row letter (uppercase only) for the end point of your " + b.getShip(index - 1));
-				x1 = kb.nextLine();
+				x1 = kb.nextLine().toLowerCase();
 				System.out.println("Complete this placement by providing the column number for the end point of your " + b.getShip(index - 1));
 				y1 = kb.nextInt();
 				kb.nextLine();
 				Flag = b.placeShip(x, y, x1, y1, index, b.getBoard());
+				}
 			}
 		}
 		b.printBoard();
@@ -72,8 +83,8 @@ public class Battleship
 		}
 		else
 		{
-			System.out.println(p1.getName() + ", your fleet has been sunk" + "\n"
-					+ p2.getName() + "has won the game.");
+			System.out.println(p1.getName() + ", your fleet has been sunk." + "\n"
+					+ p2.getName() + " has won the game.");
 		}
 	}
 	

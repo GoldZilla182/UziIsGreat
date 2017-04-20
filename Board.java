@@ -1,3 +1,5 @@
+import java.util.Random;
+
 //This class is responsible for the management of 2D arrays.
 public class Board 
 {
@@ -30,7 +32,7 @@ public class Board
                 { 
                     if(this.board[i-1][j-1] >=1 && this.board[i-1][j-1] <=5) 
                     {
-                        System.out.print("B|");
+                        System.out.print(this.board[i-1][j-1]+"|");
                     }
                     else if(this.board[i-1][j-1] == 6)
                     {
@@ -162,6 +164,73 @@ public class Board
             }
         return Flag;
 	}
+	public void automaticPlaceShip(int Index, int[][] board)
+    {
+	    int size = shipSizes[Index-1];
+
+        Random rdn = new Random();
+        int horizontalVertical = rdn.nextInt(2); //if 0 we will set the ship horizontally, if 1 vertically.
+
+        if(horizontalVertical == 0)
+        {
+            int x = rdn.nextInt(10); // 0 to 9
+            int y = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9;
+            while(board[x][y] != 0)
+            {
+                x = rdn.nextInt(10); // 0 to 9
+                y = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9;
+            }
+
+            int temp = y;
+
+            for(int c = 0; c < size; c++)
+            {
+                if(board[x][temp] != 0)
+                {
+                    x = rdn.nextInt(10); // 0 to 9
+                    y = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9;
+                    c = 0;
+                    temp = y;
+                }
+                temp--;
+            }
+                for (int c = 0; c < size; c++)
+                {
+                    board[x][y] = Index;
+                    y--;
+                }
+        }
+        else
+        {
+            int x = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9
+            int y = rdn.nextInt(10); // 0 to 9
+
+            while(board[x][y] != 0)
+            {
+                x = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9
+                y = rdn.nextInt(10); // 0 to 9
+            }
+
+            int temp = x;
+
+            for(int c = 0; c < size; c++)
+            {
+                if(board[temp][y] != 0)
+                {
+                    x = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9
+                    y = rdn.nextInt(10); // 0 to 9
+                    c = 0;
+                    temp = x;
+                }
+                temp--;
+            }
+                for (int c = 0; c < size; c++)
+                {
+                    board[x][y] = Index;
+                    x--;
+                }
+        }
+    }
 	//Used to determine if a strike is successful.
 	public boolean checkStrike(String x, int y, int[][] board)
 	{
