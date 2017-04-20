@@ -67,6 +67,11 @@ public class Board
 		return shipNames[x];
 	}
 	
+	public boolean[] getAllFleet()
+	{
+		return fleetIntact;
+	}
+	
 	public boolean getFleet(int b)
 	{
 		return fleetIntact[b];
@@ -253,7 +258,7 @@ public class Board
 		
 	}
 	//A strike has occurred, method to investigate entire fleet status.
-	public void trueStrike(int[][] board)
+	public void trueStrike(int[][] board, boolean[] fleetIntact)
 	{
 		for(int k = 0; k < fleetIntact.length; k++)
 		{
@@ -270,8 +275,11 @@ public class Board
 				}
 				
 			}
-			
-			
+			//Procedure to break outer loop.
+			if(fleetIntact[4])
+			{
+				break;
+			}
 		}
 		
 		for(int[] i: board)
@@ -285,8 +293,10 @@ public class Board
 				}
 				
 			}
-			
-			
+			if(fleetIntact[3])
+			{
+				break;
+			}
 		}
 		
 		for(int[] i: board)
@@ -301,6 +311,10 @@ public class Board
 				
 			}
 			
+			if(fleetIntact[2])
+			{
+				break;
+			}
 			
 		}
 		
@@ -316,7 +330,10 @@ public class Board
 				
 			}
 			
-			
+			if(fleetIntact[1])
+			{
+				break;
+			}
 		}
 		
 		for(int[] i: board)
@@ -331,7 +348,10 @@ public class Board
 				
 			}
 			
-			
+			if(fleetIntact[0])
+			{
+				break;
+			}
 		}
 	}
 	
