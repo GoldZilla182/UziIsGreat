@@ -60,6 +60,7 @@ public class Battleship
 				Flag = b.placeShip(x, y, x1, y1, index, b.getBoard());
 			}
 		}
+		b.printBoard();
 	}
 
 	public static void printResult(Player p1, Player p2)
