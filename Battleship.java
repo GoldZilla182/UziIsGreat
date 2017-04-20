@@ -5,7 +5,7 @@ public class Battleship
 	//William Akinsanya (2937067) & Alessandro Baccin (2937425).
 	
 	/*REMAINING ISSUES
-	 * Fix text jump bug, save functionality, add option to automate placements.
+	 *Save functionality, add option to automate placements.
 	 * Add prompts for invalid entries.
 	 */
 	
@@ -63,17 +63,17 @@ public class Battleship
 		b.printBoard();
 	}
 
-	public static void printResult(Player p1, Player p2)
+	public static void printResult(Player p1, Player p2, boolean decider)
 	{
-		if(p1.getScore() > p2.getScore())
+		if(decider)
 		{
-			System.out.println(p2.getName() + ", your fleet has been sunk." +"\n"
+			System.out.println(p2.getName() + ", your entire fleet has been sunk." +"\n"
 					+ p1.getName() + " has won the game.");
 		}
 		else
 		{
-			System.out.println(p1.getName() + ", your fleet has been sunk" + "\n"
-					+ p2.getName() + "has won the game.");
+			System.out.println(p1.getName() + ", your entire fleet has been sunk" + "\n"
+					+ p2.getName() + " has won the game.");
 		}
 	}
 	
@@ -140,9 +140,10 @@ public class Battleship
 					
 					//Only if a user has hit a water-craft - is further investigation required.
 					boolean fleetStatus = true;
+					//boolean[] fleet = b2.getAllFleet();
 					if(b1.checkStrike(x, y, b2.getBoard()))
 					{
-						b1.trueStrike(b2.getBoard());
+						b1.trueStrike(b2.getBoard(), b2.getAllFleet());
 						for(int i = 4; i > -1; i--)
 						{
 							if(!(b2.getFleet(i)))
@@ -165,16 +166,17 @@ public class Battleship
 							}
 						}
 						
-						if(fleetStatus)
+						if(!fleetStatus)
 						{
-							printResult(p1, p2);
+							boolean decider = true;
+							printResult(p1, p2, decider);
 							inGame = false;
 							Game = false;
 						}
 					}
 			
 					
-					//Player 2 turn.
+					//Player 2 turn........................................................................................................................
 					b2.printBoard();
 					System.out.println(p2.getName() + ", it is your turn." + "\n" 
 					+ "Enter the letter corresponding to your chosen row (uppercase only).");
@@ -183,33 +185,35 @@ public class Battleship
 					y = kb.nextInt();
 					kb.nextLine();
 					
-					if(b1.checkStrike(x, y, b2.getBoard()))
+					boolean fleetStatus1 = true;
+					if(b2.checkStrike(x, y, b1.getBoard()))
 					{
-						b1.trueStrike(b2.getBoard());
+						b2.trueStrike(b1.getBoard(), b1.getAllFleet());
 						for(int i = 4; i > -1; i--)
 						{
-							if(!(b2.getFleet(i)))
+							if(!(b1.getFleet(i)))
 							{
-								System.out.println("You sunk a "+b2.getShip(i));
+								System.out.println("You sunk a "+b1.getShip(i));
 							}
 						}
 						
 						for(int k = 0; k < 5; k++)
 						{
-							if(!(b2.getFleet(k)))
+							if(!(b1.getFleet(k)))
 							{
-								fleetStatus = false; 
+								fleetStatus1 = false; 
 							}
 							else
 							{
-								fleetStatus = true;
+								fleetStatus1 = true;
 								break;
 							}
 						}
 						
-						if(fleetStatus)
+						if(!fleetStatus1)
 						{
-							printResult(p1, p2);
+							boolean decider = false;
+							printResult(p1, p2, decider);
 							inGame = false;
 							Game = false;
 						}
