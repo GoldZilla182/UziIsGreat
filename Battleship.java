@@ -44,18 +44,21 @@ public class Battleship
 		for(int index = 1; index < 6; index++)
 		{	
 			b.printBoard();
-			System.out.println(p.getName() + ", it is time to place your " + b.getShip(index-1) + "\n"
-			+ "Enter the row letter (uppercase only) for the start point of your " + b.getShip(index-1));
-			x = kb.nextLine();
-			System.out.println("Enter the column number for the start point of your " + b.getShip(index-1));
-			y = kb.nextInt();
-			kb.nextLine();
-			System.out.println("Ok, now enter the row letter (uppercase only) for the end point of your " + b.getShip(index-1));
-			x1 = kb.nextLine();
-			System.out.println("Complete this placement by providing the column number for the end point of your " + b.getShip(index-1));
-			y1 = kb.nextInt();
-			kb.nextLine();
-			b.placeShip(x, y, x1, y1, index, b.getBoard());
+			boolean Flag = false;
+			while(!Flag) {
+				System.out.println(p.getName() + ", it is time to place your " + b.getShip(index - 1) + "\n"
+						+ "Enter the row letter (uppercase only) for the start point of your " + b.getShip(index - 1));
+				x = kb.nextLine();
+				System.out.println("Enter the column number for the start point of your " + b.getShip(index - 1));
+				y = kb.nextInt();
+				kb.nextLine();
+				System.out.println("Ok, now enter the row letter (uppercase only) for the end point of your " + b.getShip(index - 1));
+				x1 = kb.nextLine();
+				System.out.println("Complete this placement by providing the column number for the end point of your " + b.getShip(index - 1));
+				y1 = kb.nextInt();
+				kb.nextLine();
+				Flag = b.placeShip(x, y, x1, y1, index, b.getBoard());
+			}
 		}
 	}
 

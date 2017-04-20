@@ -70,59 +70,82 @@ public class Board
 		return fleetIntact[b];
 	}
 	
-	public void placeShip(String x, int y, String x1, int y1, int Index, int[][] board)
+	public boolean placeShip(String x, int y, String x1, int y1, int Index, int[][] board)
 	{
-		char z = x.charAt(0);
-		int r = (int) z;
-		char z1 = x1.charAt(0);
-		int r1 = (int) z1;
+        char z;
+        int r = 0;
+        char z1;
+        int r1 = 0;
 
-		boolean Flag = false;
+        boolean Flag = false;
+        boolean FlagInitialOverwritingY;
+        boolean FlagInitialOverwritingX;
 
-		if(Flag == false) {
-			if ((r - 65) == (r1 - 65) || y == y1) //Verifies provided coordinates confine to defined parameters.
-			{
-				Flag = (board[r1 - 65][y] == 0); // check the front first //Will be used to 'flag' an overwriting placement.
-				//Horizontal placement, that is x == x1.
-				if ((r - 65) == (r1 - 65) && Math.abs(y1 - y) == (shipSizes[Index - 1] - 1) && board[r1 - 65][y] == 0) {
-					for (int i = y1; i != y; i += (y - y1) / (shipSizes[Index - 1] - 1)) {
-						Flag = Flag && (board[r1 - 65][i] == 0);
-					}
-					if (Flag) {
-						for (int i = y1; i != y; i += (y - y1) / (shipSizes[Index - 1] - 1)) {
-							board[r - 65][i] = Index;
-						}
-						board[r - 65][y] = Index; // assign the front
-					} else {
-						Flag = false;
-					}
-				} else {
-					Flag = false;
-				}
-				//Vertical placement, that is y == y1.
-				if ((y) == (y1) && Math.abs((r - 65) - (r1 - 65)) == (shipSizes[Index - 1] - 1) && board[r1 - 65][y] == 0) {
-					for (int i = r1 - 65; i != r - 65; i += ((r - 65) - (r1 - 65)) / (shipSizes[Index - 1] - 1)) {
+        try {
+            z = x.charAt(0);
+            r = (int) z;
+            z1 = x1.charAt(0);
+            r1 = (int) z1;
 
-						Flag = Flag && (board[i][y] == 0);
-					}
-					if (Flag) {
-						for (int i = r1 - 65; i != r - 65; i += ((r - 65) - (r1 - 65)) / (shipSizes[Index - 1] - 1)) {
-							board[i][y] = Index;
-						}
-						board[r - 65][y] = Index; // assign the front
-					} else {
-						Flag = false;
-					}
-				} else {
-					Flag = false;
-				}
-			}
-		}
-		else
-		{
-			System.out.println("The grid inputs entered are invalid." + "\n"
-					+ "Note: Only vertical and horizontal placements are allowed");
-		}
+            FlagInitialOverwritingY = (board[r - 65][y] == 0 || board[r - 65][y1] == 0); //If they are in the same y axis but it's already occupied.
+            FlagInitialOverwritingX = (board[r - 65][y] == 0 || board[r1 - 65][y] == 0); //If they are in the same x axis but it's already occupied;
+        }
+        catch (Exception e){
+            System.out.println("Oops");
+            FlagInitialOverwritingX = false;
+            FlagInitialOverwritingY= false;
+        }
+
+
+        boolean inputsRs = ((r-65 >= 0 && r-65 <= 9) && (r-65 >= 0 && r-65 <= 9)); //Check if inputs are ok.
+        boolean inputsYs = ((y >= 0 && y <= 9) && (y1 >= 0 && y1 <= 9));
+
+
+            if (((r - 65) == (r1 - 65) || y == y1) && (FlagInitialOverwritingX && FlagInitialOverwritingY) && (inputsRs && inputsYs)) //Verifies provided coordinates confine to defined parameters.
+            {
+                Flag = (board[r1 - 65][y] == 0); // check the front first //Will be used to 'flag' an overwriting placement.
+                //Horizontal placement, that is x == x1.
+                if ((r - 65) == (r1 - 65) && Math.abs(y1 - y) == (shipSizes[Index - 1] - 1) && board[r1 - 65][y] == 0) {
+                    for (int i = y1; i != y; i += (y - y1) / (shipSizes[Index - 1] - 1)) {
+                        Flag = Flag && (board[r1 - 65][i] == 0);
+                    }
+                    if (Flag) {
+                        for (int i = y1; i != y; i += (y - y1) / (shipSizes[Index - 1] - 1)) {
+                            board[r - 65][i] = Index;
+                        }
+                        board[r - 65][y] = Index; // assign the front
+                    } else {
+                        Flag = false;
+                    }
+                }
+                //Vertical placement, that is y == y1.
+                else if ((y) == (y1) && Math.abs((r - 65) - (r1 - 65)) == (shipSizes[Index - 1] - 1) && board[r1 - 65][y] == 0) {
+                    for (int i = r1 - 65; i != r - 65; i += ((r - 65) - (r1 - 65)) / (shipSizes[Index - 1] - 1)) {
+
+                        Flag = Flag && (board[i][y] == 0);
+                    }
+                    if (Flag) {
+                        for (int i = r1 - 65; i != r - 65; i += ((r - 65) - (r1 - 65)) / (shipSizes[Index - 1] - 1)) {
+                            board[i][y] = Index;
+                        }
+                        board[r - 65][y] = Index; // assign the front
+                    } else {
+                        Flag = false;
+                    }
+                } else {
+                    Flag = false;
+                }
+
+                if (Flag == false) {
+                    System.out.println("You are overwriting your boats, change coordinates.");
+                }
+            } else {
+                System.out.println("The grid inputs entered are invalid." + "\n"
+                        + "You are probably overwriting your initial point or end point of your boat with another boat." + "\n"
+                        + "Note: Only vertical and horizontal placements are allowed" + "\n"
+                        + "Remember to use  or A and J for the rows and 0 and 9 for the columns" + "\n");
+            }
+        return Flag;
 	}
 	//Used to determine if a strike is successful.
 	public boolean checkStrike(String x, int y, int[][] board)
