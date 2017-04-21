@@ -143,7 +143,7 @@ public class Battleship
 					b1.printBoard();
 					System.out.println(p1.getName() + ", it is your turn to fire a shot." + "\n" 
 					+ "Enter the letter corresponding to your chosen row (uppercase only).");
-					x = kb.nextLine();
+					x = kb.nextLine().toUpperCase();
 					System.out.println("Enter the number corresponding to your chosen column");
 					y = kb.nextInt();
 					kb.nextLine();
@@ -190,7 +190,7 @@ public class Battleship
 					b2.printBoard();
 					System.out.println(p2.getName() + ", it is your turn." + "\n" 
 					+ "Enter the letter corresponding to your chosen row (uppercase only).");
-					x = kb.nextLine();
+					x = kb.nextLine().toUpperCase();
 					System.out.println("Enter the number corresponding to your chosen column");
 					y = kb.nextInt();
 					kb.nextLine();
