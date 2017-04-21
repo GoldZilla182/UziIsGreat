@@ -52,19 +52,14 @@ public class Board
         }
 	}
 	
-	public int[][] getBoard()
-	{
-		return board;
-	}
+	public int[][] getBoard() { return board; }
+	public void setBoard(int[][] b){ board = b; }
 	//String array for identification of sea vehicles.
 	private String[] shipNames = {"Aircraft Carrier", "Battleship", "Destroyer", "Submarine", "Patrol Boat"};
 	//Integer array holding sizes of water-craft.
 	private int[] shipSizes = {5,4,3,3,2};
 	 		
-	public String getShip(int x)
-	{
-		return shipNames[x];
-	}
+	public String getShip(int x) { return shipNames[x]; }
 	
 	public boolean[] getAllFleet()
 	{

@@ -109,30 +109,32 @@ public class Battleship
 			{
 				printRules();
 			}
-
-			else if(UserChoice == 3) //Save game option.
-			{
-
-			}
-
 			//User(s) decide to play the game.
-			else if(UserChoice == 2)
+			else if(UserChoice == 2 || UserChoice == 3)
 			{
 				//Standard objects are created.
 				boolean inGame = true;
 				int y;
 				String x;
-				
-				System.out.println("Welcome to Battleship" +"\n" + "Player 1, enter your name.");
-				p1.setName(kb.nextLine());
-				System.out.println("Player 2, enter your name.");
-				p2.setName(kb.nextLine());
-				
-				//Placement phase version - Will A.
-				setShips(b1, p1);
-				System.out.println("");
-				setShips(b2, p2);
-				
+				if(UserChoice == 2) {
+					System.out.println("Welcome to Battleship" + "\n" + "Player 1, enter your name.");
+					p1.setName(kb.nextLine());
+					System.out.println("Player 2, enter your name.");
+					p2.setName(kb.nextLine());
+
+					//Placement phase version - Will A.
+					setShips(b1, p1);
+					System.out.println("");
+					setShips(b2, p2);
+				}
+				else{
+					SaveGame saveGame = new SaveGame();
+					saveGame.resumeGame();
+					p1.setName(saveGame.getPlayer1());
+					p2.setName(saveGame.getPlayer2());
+					b1.setBoard(saveGame.getBoard1());
+					b2.setBoard(saveGame.getBoard2());
+				}
 				//This loops marks the beginning of a game.
 				while(inGame)
 				{
@@ -226,7 +228,15 @@ public class Battleship
 							Game = false;
 						}
 					}
-						
+					System.out.println("Save and close?");
+					if(kb.nextLine().toUpperCase().equals("Y"))
+					{
+						SaveGame saveGame = new SaveGame();
+						saveGame.SaveGame(b1, b2, p1, p2);
+						System.out.println("We hoped you enjoyed playing Battleship."+"\n"+"William Akinsanya & Alessandro Baccin");
+						inGame = false;
+						Game = false;
+					}
 			}
 		}
 
