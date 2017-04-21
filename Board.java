@@ -155,7 +155,7 @@ public class Board
 
                 if (!Flag)
                 {
-                    System.out.println("You are overwriting your boats, change coordinates.");
+                    System.out.println("You are probably overwriting your boats or maybe the ship is not that long, change coordinates.");
                 }
             }
             else
