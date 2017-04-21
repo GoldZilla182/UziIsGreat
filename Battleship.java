@@ -4,12 +4,7 @@ public class Battleship
 	//An emulation of the Battleship game using java.
 	//William Akinsanya (2937067) & Alessandro Baccin (2937425).
 	
-	/*REMAINING ISSUES
-	 *Save functionality, add option to automate placements.
-	 * Add prompts for invalid entries.
-	 */
-	
-	//Method to print game menu.
+	//Method to print game menu - William
 	public static int printMenu()
 	{
 		Scanner kb = new Scanner(System.in);
@@ -17,13 +12,13 @@ public class Battleship
 				+ "Game Menu" +"\n"
 				+ "1. Rules & Information (1)" +"\n"
 				+ "2. New Game (2)" +"\n"
-				+ "3. Save Game (3)" +"\n"
+				+ "3. Resume Game (3)" +"\n"
 				+ "4. Quit Game (4)");
 
 		int UserChoice = kb.nextInt();
 		return UserChoice;
 	}
-	//Created method to print rules & information.
+	//Created method to print rules & information - William
 	public static void printRules()
 	{
 		System.out.println("Rules & Information" +"\n"
@@ -35,7 +30,7 @@ public class Battleship
 				+ "6. Grid inputs are case-sensitive, only uppercase letters are accepted.");
 		System.out.println("");
 	}
-	//Method allowing users to place their sea vehicles.
+	//Method allowing users to place their sea vehicles - Alessandro & William
 	public static void setShips(Board b, Player p)
 	{
 		Scanner kb = new Scanner(System.in);
@@ -43,7 +38,8 @@ public class Battleship
 		int y,y1;
 		System.out.println("Do you want to use the automatic positioning?(Y/N)");
 		String response = kb.nextLine().toUpperCase();
-
+		
+		//Alessandro
 		if(response.equals("Y"))
 		{
 			for (int index = 1; index < 6; index ++)
@@ -55,6 +51,7 @@ public class Battleship
 			for (int index = 1; index < 6; index++) {
 				b.printBoard();
 				boolean Flag = false;
+				//William
 				while(!Flag) {
 				System.out.println(p.getName() + ", it is time to place your " + b.getShip(index - 1) + "\n"
 						+ "Enter the row letter (uppercase only) for the start point of your " + b.getShip(index - 1));
@@ -73,7 +70,7 @@ public class Battleship
 		}
 		b.printBoard();
 	}
-
+	//Method for the conclusion of a game - William
 	public static void printResult(Player p1, Player p2, boolean decider)
 	{
 		if(decider)
@@ -87,7 +84,7 @@ public class Battleship
 					+ p2.getName() + " has won the game.");
 		}
 	}
-	
+	//Main program method - Alessandro & William
 	public static void main(String[] args) 
 	{
 		Scanner kb = new Scanner(System.in);
@@ -139,7 +136,7 @@ public class Battleship
 				//This loops marks the beginning of a game.
 				while(inGame)
 				{
-					//Striking phase (in progress).
+					//Striking phase.
 					//Player 1 turn.
 					b1.printBoard();
 					System.out.println(p1.getName() + ", it is your turn to fire a shot." + "\n" 
@@ -149,7 +146,7 @@ public class Battleship
 					y = kb.nextInt();
 					kb.nextLine();
 					
-					//Only if a user has hit a water-craft - is further investigation required.
+					//Only if a user has hit a water-craft - is further investigation required - William
 					boolean fleetStatus = true;
 					//boolean[] fleet = b2.getAllFleet();
 					if(b1.checkStrike(x, y, b2.getBoard()))

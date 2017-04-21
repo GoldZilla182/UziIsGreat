@@ -1,8 +1,8 @@
 import java.util.Random;
-
 //This class is responsible for the management of 2D arrays.
 public class Board 
 {
+	//For the printing of a player's game board - Alessandro.
 	public void printBoard()
 	{
 		int asciiValue = 65;
@@ -60,7 +60,6 @@ public class Board
 	private String[] shipNames = {"Aircraft Carrier", "Battleship", "Destroyer", "Submarine", "Patrol Boat"};
 	//Integer array holding sizes of water-craft.
 	private int[] shipSizes = {5,4,3,3,2};
-	//Boolean array, will be used to indicate fleet status.
 	 		
 	public String getShip(int x)
 	{
@@ -76,10 +75,11 @@ public class Board
 	{
 		return fleetIntact[b];
 	}
-	
+	//Function for the manual placement of ships - William & Alessandro.
 	public boolean placeShip(String x, int y, String x1, int y1, int Index, int[][] board)
 	{
-        char z;
+        //Alessandro
+		char z;
         int r = 0;
         char z1;
         int r1 = 0;
@@ -108,9 +108,10 @@ public class Board
         boolean inputsYs = ((y >= 0 && y <= 9) && (y1 >= 0 && y1 <= 9));
 
 
-            if (((r - 65) == (r1 - 65) || y == y1) && (FlagInitialOverwritingX && FlagInitialOverwritingY) && (inputsRs && inputsYs)) //Verifies provided coordinates confine to defined parameters.
+        //William   
+        if (((r - 65) == (r1 - 65) || y == y1) && (FlagInitialOverwritingX && FlagInitialOverwritingY) && (inputsRs && inputsYs)) //Verifies provided coordinates confine to defined parameters.
             {
-                Flag = (board[r1 - 65][y] == 0); // check the front first //Will be used to 'flag' an overwriting placement.
+                Flag = (board[r1 - 65][y] == 0); // check the front first / Will be used to 'flag' an overwriting placement.
                 //Horizontal placement, that is x == x1.
                 if ((r - 65) == (r1 - 65) && Math.abs(y1 - y) == (shipSizes[Index - 1] - 1) && board[r1 - 65][y] == 0)
                 {
@@ -169,6 +170,7 @@ public class Board
             }
         return Flag;
 	}
+	//Function providing the option to automatically place sea vehicles - Alessandro.
 	public void automaticPlaceShip(int Index, int[][] board)
     {
 	    int size = shipSizes[Index-1];
@@ -236,7 +238,7 @@ public class Board
                 }
         }
     }
-	//Used to determine if a strike is successful.
+	//Used to determine if a strike is successful - William.
 	public boolean checkStrike(String x, int y, int[][] board)
 	{
 		char r = x.charAt(0);
@@ -257,7 +259,7 @@ public class Board
 		
 		
 	}
-	//A strike has occurred, method to investigate entire fleet status.
+	//A strike has occurred, method to investigate entire fleet status - William
 	public void trueStrike(int[][] board, boolean[] fleetIntact)
 	{
 		for(int k = 0; k < fleetIntact.length; k++)
@@ -356,6 +358,7 @@ public class Board
 	}
 	
 	private int[][] board = new int[10][10];
+	//Boolean array, will be used to indicate fleet status.
 	private boolean[] fleetIntact = new boolean[5];
 }
 
