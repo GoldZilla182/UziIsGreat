@@ -175,23 +175,23 @@ public class Board
 
         if(horizontalVertical == 0)
         {
-            int x = rdn.nextInt(10); // 0 to 9
-            int y = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9;
-            while(board[x][y] != 0)
-            {
-                x = rdn.nextInt(10); // 0 to 9
-                y = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9;
-            }
-
-            int temp = y;
-
+            int x = 0; // 0 to 9
+            int y = 0; // 0 to 5, +4 so 4 to 9;
+            int temp = 0;
             for(int c = 0; c < size; c++)
             {
+                if(c == 0)
+                {
+                    x = rdn.nextInt(10); // 0 to 9
+                    y = rdn.nextInt(5) + size - 1; // 0 to 5, +4 so 4 to 9;
+                    temp = y;
+                }
+
                 if(board[x][temp] != 0)
                 {
                     x = rdn.nextInt(10); // 0 to 9
                     y = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9;
-                    c = 0;
+                    c = -1;
                     temp = y;
                 }
                 temp--;
@@ -204,33 +204,32 @@ public class Board
         }
         else
         {
-            int x = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9
-            int y = rdn.nextInt(10); // 0 to 9
-
-            while(board[x][y] != 0)
-            {
-                x = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9
-                y = rdn.nextInt(10); // 0 to 9
-            }
-
-            int temp = x;
-
+            int x = 0;
+            int y = 0;
+            int temp = 0;
             for(int c = 0; c < size; c++)
             {
+                if(c == 0)
+                {
+                    x = rdn.nextInt(5) + size - 1; // 0 to 5, +4 so 4 to 9
+                    y = rdn.nextInt(10); // 0 to 9
+                    temp = x;
+                }
+
                 if(board[temp][y] != 0)
                 {
                     x = rdn.nextInt(5)+size-1; // 0 to 5, +4 so 4 to 9
                     y = rdn.nextInt(10); // 0 to 9
-                    c = 0;
+                    c = -1;
                     temp = x;
                 }
                 temp--;
             }
-                for (int c = 0; c < size; c++)
-                {
-                    board[x][y] = Index;
-                    x--;
-                }
+            for (int c = 0; c < size; c++)
+            {
+                board[x][y] = Index;
+                x--;
+            }
         }
     }
 	//Used to determine if a strike is successful - William.
