@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 public class Battleship 
 {
 	//An emulation of the Battleship game using java.
@@ -14,8 +15,11 @@ public class Battleship
 				+ "2. New Game (2)" +"\n"
 				+ "3. Resume Game (3)" +"\n"
 				+ "4. Quit Game (4)");
-
 		int UserChoice = kb.nextInt();
+		while(!(UserChoice >= 0 && UserChoice <= 4)){
+			System.out.println("Wrong Inputs");
+			UserChoice = kb.nextInt();
+		}
 		return UserChoice;
 	}
 	//Created method to print rules & information - William
@@ -130,9 +134,12 @@ public class Battleship
 				else{
 					SaveGame saveGame = new SaveGame();
 					saveGame.resumeGame();
+
 					p1.setName(saveGame.getPlayer1());
 					p2.setName(saveGame.getPlayer2());
+
 					System.out.println("Hi, " + p1.getName() +" and " + p2.getName() + "\n");
+
 					b1.setBoard(saveGame.getBoard1());
 					b2.setBoard(saveGame.getBoard2());
 				}
@@ -229,7 +236,9 @@ public class Battleship
 							Game = false;
 						}
 					}
+
 					System.out.println("Save and close?");
+
 					if(kb.nextLine().toUpperCase().equals("Y"))
 					{
 						SaveGame saveGame = new SaveGame();

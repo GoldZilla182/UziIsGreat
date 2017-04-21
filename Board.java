@@ -32,7 +32,7 @@ public class Board
                 { 
                     if(this.board[i-1][j-1] >=1 && this.board[i-1][j-1] <=5) 
                     {
-                        System.out.print(this.board[i-1][j-1]+"|");
+                        System.out.print("B|");
                     }
                     else if(this.board[i-1][j-1] == 6)
                     {
