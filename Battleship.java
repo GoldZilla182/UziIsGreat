@@ -13,7 +13,7 @@ public class Battleship
 				+ "Game Menu" +"\n"
 				+ "1. Rules & Information (1)" +"\n"
 				+ "2. New Game (2)" +"\n"
-				+ "3. Resume Game (3)" +"\n"
+				+ "3. Resume Game - Last SAVED game (3)" +"\n"
 				+ "4. Quit Game (4)");
 		int UserChoice = kb.nextInt();
 		while(!(UserChoice >= 0 && UserChoice <= 4))
