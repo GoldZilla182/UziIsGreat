@@ -195,6 +195,7 @@ public class Battleship
 							printResult(p1, p2, decider);
 							inGame = false;
 							Game = false;
+							System.exit(0);
 						}
 					}
 				
@@ -241,16 +242,19 @@ public class Battleship
 						}
 					}
 					
-					//Alessandro
-					System.out.println("You can now save the game and exit if necessary. (Y/N)");
-
-					if(kb.nextLine().toUpperCase().equals("Y"))
+					//
+					if(Game)
 					{
-						SaveGame saveGame = new SaveGame();
-						saveGame.SaveGame(b1, b2, p1, p2);
-						System.out.println("We hoped you enjoyed playing Battleship."+"\n"+"William Akinsanya & Alessandro Baccin");
-						inGame = false;
-						Game = false;
+						System.out.println("You can now save the game and exit if necessary. (Y/N)");
+
+						if (kb.nextLine().toUpperCase().equals("Y"))
+						{
+							SaveGame saveGame = new SaveGame();
+							saveGame.SaveGame(b1, b2, p1, p2);
+							System.out.println("We hoped you enjoyed playing Battleship." + "\n" + "William Akinsanya & Alessandro Baccin");
+							inGame = false;
+							Game = false;
+						}
 					}
 			}
 		}

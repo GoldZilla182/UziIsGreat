@@ -43,6 +43,10 @@ public class Board
                     {
                         System.out.print("X|");
                     }
+                    else if(this.board[i-1][j-1] == 8)
+                    {
+                        System.out.print("M|"); //Mixed: you have both a "Hit" and a "boat" in YOUR board
+                    }
                     else
                     {
                         System.out.print(" |");
@@ -238,17 +242,20 @@ public class Board
 		
 		if(board[charNum - 65][y] >= 1 && board[charNum - 65][y] <= 5)
 		{
-			board[charNum - 65][y] = 6; //Sets the hit location to an 'H'.
-            if(board2[charNum - 65][y] == 0)
+			board[charNum - 65][y] = 0; //Sets the hit location to a ' '.
+            if(board2[charNum - 65][y] == 0 )
             {
                 board2[charNum - 65][y] = 6; //Sets location to an 'X', indicating a missed strike on the array.
+            }
+            else
+            {
+                board2[charNum - 65][y] = 8; //The location in the player's board is both a "Hit" and a "Boat" (M = Mixed).
             }
 			System.out.println("Hit");
 			return true;
 		}
 		else
 		{
-			board[charNum - 65][y] = 7; //Sets location to an 'X', indicating a missed strike on the array.
             if(board2[charNum - 65][y] == 0)
             {
                 board2[charNum - 65][y] = 7; //Sets location to an 'X', indicating a missed strike on the array.
