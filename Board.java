@@ -231,7 +231,7 @@ public class Board
         }
     }
 	//Used to determine if a strike is successful - William.
-	public boolean checkStrike(String x, int y, int[][] board)
+	public boolean checkStrike(String x, int y, int[][] board, int[][] board2)
 	{
 		char r = x.charAt(0);
 		int charNum = (int) r;
@@ -239,12 +239,20 @@ public class Board
 		if(board[charNum - 65][y] >= 1 && board[charNum - 65][y] <= 5)
 		{
 			board[charNum - 65][y] = 6; //Sets the hit location to an 'H'.
+            if(board2[charNum - 65][y] == 0)
+            {
+                board2[charNum - 65][y] = 6; //Sets location to an 'X', indicating a missed strike on the array.
+            }
 			System.out.println("Hit");
 			return true;
 		}
 		else
 		{
 			board[charNum - 65][y] = 7; //Sets location to an 'X', indicating a missed strike on the array.
+            if(board2[charNum - 65][y] == 0)
+            {
+                board2[charNum - 65][y] = 7; //Sets location to an 'X', indicating a missed strike on the array.
+            }
 			System.out.println("Miss.");
 			return false;
 		}

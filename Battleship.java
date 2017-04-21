@@ -164,7 +164,7 @@ public class Battleship
 					//Only if a user has hit a water-craft - is further investigation required.
 					//William
 					boolean fleetStatus = true;
-					if(b1.checkStrike(x, y, b2.getBoard()))
+					if(b1.checkStrike(x, y, b2.getBoard(), b1.getBoard()))
 					{
 						b1.trueStrike(b2.getBoard(), b2.getAllFleet());
 						for(int i = 4; i > -1; i--)
@@ -208,7 +208,7 @@ public class Battleship
 					kb.nextLine();
 					
 					boolean fleetStatus1 = true;
-					if(b2.checkStrike(x, y, b1.getBoard()))
+					if(b2.checkStrike(x, y, b1.getBoard(), b2.getBoard()))
 					{
 						b2.trueStrike(b1.getBoard(), b1.getAllFleet());
 						for(int i = 4; i > -1; i--)
@@ -242,7 +242,7 @@ public class Battleship
 					}
 					
 					//Alessandro
-					System.out.println("You can now save the game if neccessary. (Y/N)");
+					System.out.println("You can now save the game and exit if neccessary. (Y/N)");
 
 					if(kb.nextLine().toUpperCase().equals("Y"))
 					{
