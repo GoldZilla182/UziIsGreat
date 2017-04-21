@@ -132,6 +132,7 @@ public class Battleship
 					saveGame.resumeGame();
 					p1.setName(saveGame.getPlayer1());
 					p2.setName(saveGame.getPlayer2());
+					System.out.println("Hi, " + p1.getName() +" and " + p2.getName() + "\n");
 					b1.setBoard(saveGame.getBoard1());
 					b2.setBoard(saveGame.getBoard2());
 				}
