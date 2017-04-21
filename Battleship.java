@@ -123,7 +123,8 @@ public class Battleship
 				boolean inGame = true;
 				int y;
 				String x;
-				if(UserChoice == 2) 
+				SaveGame saveGame = new SaveGame();
+				if(UserChoice == 2)
 				{
 					System.out.println("Welcome to Battleship" + "\n" + "Player 1, please enter your name.");
 					p1.setName(kb.nextLine());
@@ -136,9 +137,9 @@ public class Battleship
 					setShips(b2, p2);
 				}
 				//Alessandro
-				else
+				else if(UserChoice == 3 && saveGame.resumeGame())
 				{
-					SaveGame saveGame = new SaveGame();
+
 					saveGame.resumeGame();
 
 					p1.setName(saveGame.getPlayer1());
@@ -148,6 +149,18 @@ public class Battleship
 
 					b1.setBoard(saveGame.getBoard1());
 					b2.setBoard(saveGame.getBoard2());
+				}
+				else
+				{
+					System.out.println("\n" + "Player 1, please enter your name.");
+					p1.setName(kb.nextLine());
+					System.out.println("Player 2, please enter your name.");
+					p2.setName(kb.nextLine());
+
+					//Method for placing ships is called for each player.
+					setShips(b1, p1);
+					System.out.println("");
+					setShips(b2, p2);
 				}
 				//This loops marks the beginning of a game.
 				while(inGame)
@@ -249,7 +262,6 @@ public class Battleship
 
 						if (kb.nextLine().toUpperCase().equals("Y"))
 						{
-							SaveGame saveGame = new SaveGame();
 							saveGame.SaveGame(b1, b2, p1, p2);
 							System.out.println("We hoped you enjoyed playing Battleship." + "\n" + "William Akinsanya & Alessandro Baccin");
 							inGame = false;

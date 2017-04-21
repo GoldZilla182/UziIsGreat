@@ -35,12 +35,19 @@ public class SaveGame {
         }
     }
     //William
-    public void resumeGame()
+    public boolean resumeGame()
     {
+        boolean resume = true;
         //Resume Game option
         try
         {
         DataInputStream binIn = new DataInputStream(new FileInputStream("saveData.dat"));
+
+        if(binIn.available() == 0)
+        {
+            System.out.println("There is no save data.");
+            resume = false;
+        }
 
         while(binIn.available() > 0)
         {
@@ -67,6 +74,7 @@ public class SaveGame {
         {
             System.out.println("Oops something went wrong");
         }
+        return resume;
     }
     public int[][] getBoard1(){ return board1; }
 
