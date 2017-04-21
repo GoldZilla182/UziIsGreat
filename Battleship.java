@@ -242,7 +242,7 @@ public class Battleship
 					}
 					
 					//Alessandro
-					System.out.println("You can now save the game and exit if neccessary. (Y/N)");
+					System.out.println("You can now save the game and exit if necessary. (Y/N)");
 
 					if(kb.nextLine().toUpperCase().equals("Y"))
 					{
