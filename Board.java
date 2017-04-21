@@ -2,7 +2,8 @@ import java.util.Random;
 //This class is responsible for the management of 2D arrays.
 public class Board 
 {
-	//For the printing of a player's game board - Alessandro.
+	//For the printing of a player's game board. 
+	//Alessandro.
 	public void printBoard()
 	{
 		int asciiValue = 65;
@@ -61,10 +62,7 @@ public class Board
 	 		
 	public String getShip(int x) { return shipNames[x]; }
 	
-	public boolean[] getAllFleet()
-	{
-		return fleetIntact;
-	}
+	public boolean[] getAllFleet(){ return fleetIntact; };
 	
 	public boolean getFleet(int b)
 	{
@@ -159,9 +157,9 @@ public class Board
             else
             {
                 System.out.println("The grid inputs entered are invalid." + "\n"
-                        + "You are probably overwriting your initial point or end point of your boat with another boat." + "\n"
-                        + "Note: Only vertical and horizontal placements are allowed" + "\n"
-                        + "Remember to use A 〜 J for the rows and 0 〜 9 for the columns" + "\n");
+                        + "You are probably overwriting your initial point or end point of a boat with another boat." + "\n"
+                        + "Note: Only vertical and horizontal placements are allowed." + "\n"
+                        + "Remember to use A 〜 J for the rows and 0 〜 9 for the columns." + "\n");
             }
         return Flag;
 	}

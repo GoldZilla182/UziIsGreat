@@ -1,9 +1,9 @@
-/**
- * Created by bacci on 19/04/2017.
- */
+//Class for save management.
 import java.io.*;
 public class SaveGame {
-    public void SaveGame(Board board1, Board board2, Player player1, Player player2) {
+	//Alessandro
+    public void SaveGame(Board board1, Board board2, Player player1, Player player2) 
+{
         //Save game option
         int[][] board1S = board1.getBoard();
         int[][] board2S = board2.getBoard();
@@ -31,15 +31,19 @@ public class SaveGame {
             binOut.close();
 
         } catch (Exception e) {
-            System.out.println("Oops something went wrong");
+            System.out.println("Unable to save game.");
         }
     }
-    public void resumeGame(){
+    //William
+    public void resumeGame()
+    {
         //Resume Game option
-        try{
+        try
+        {
         DataInputStream binIn = new DataInputStream(new FileInputStream("saveData.dat"));
 
-        while(binIn.available() > 0) {
+        while(binIn.available() > 0)
+        {
             player1Name = binIn.readUTF();
             player2Name = binIn.readUTF();
 
@@ -49,8 +53,10 @@ public class SaveGame {
                 }
             }
 
-            for (int c = 0; c < 10; c++) {
-                for (int i = 0; i < 10; i++) {
+            for (int c = 0; c < 10; c++)
+            {
+                for (int i = 0; i < 10; i++)
+                {
                     board2[c][i] = binIn.readInt();
                 }
             }

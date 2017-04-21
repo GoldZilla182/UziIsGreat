@@ -4,15 +4,10 @@ public class Player
 	//Variables will be kept private and accessed via getters & setters methods.
 	private String Name;
 	
-	public String getName()
-	{
-		return Name;
-	}
-
-	public void setName(String n)
-	{
-		this.Name = n;
-	}
+	public String getName(){ return Name;}
+	
+	public void setName(String n){ this.Name = n;}
+	
 
 }
 	
