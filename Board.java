@@ -43,10 +43,6 @@ public class Board
                     {
                         System.out.print("X|");
                     }
-                    else if(this.board[i-1][j-1] == 8)
-                    {
-                        System.out.print("M|"); //Mixed: you have both a "Hit" and a "boat" in YOUR board
-                    }
                     else
                     {
                         System.out.print(" |");
@@ -56,6 +52,50 @@ public class Board
             System.out.println();
         }
 	}
+
+    public void printStatusBoard()
+    {
+        int asciiValue = 65;
+        char asciiChar = (char) asciiValue;
+        for(int i = 0; i < 11; i++)
+        {
+            int temp = 0;
+            for(int j = 0; j < 11; j++)
+            {
+
+                if( j != 0 && i == 0)
+                {
+                    System.out.print(temp + " ");
+                    temp++;
+                }
+                else if(i > 0 && j == 0)
+                {
+                    System.out.print(asciiChar + "|");
+                    asciiChar++;
+                }
+                else if( j == 0 && i == 0)
+                {
+                    System.out.print("  ");
+                }
+                else if(i >= 1 && j >=1)	//I need this statement because otherwise it would create an Underflow exception
+                {
+                    if(this.board[i-1][j-1] == 6)
+                    {
+                        System.out.print("H|");
+                    }
+                    else if(this.board[i-1][j-1] == 7)
+                    {
+                        System.out.print("X|");
+                    }
+                    else
+                    {
+                        System.out.print(" |");
+                    }
+                }
+            }
+            System.out.println();
+        }
+    }
 	
 	public int[][] getBoard() { return board; }
 	public void setBoard(int[][] b){ board = b; }
@@ -235,31 +275,20 @@ public class Board
         }
     }
 	//Used to determine if a strike is successful - William.
-	public boolean checkStrike(String x, int y, int[][] board, int[][] board2)
+	public boolean checkStrike(String x, int y, int[][] board)
 	{
 		char r = x.charAt(0);
 		int charNum = (int) r;
 		
 		if(board[charNum - 65][y] >= 1 && board[charNum - 65][y] <= 5)
 		{
-			board[charNum - 65][y] = 0; //Sets the hit location to a ' '.
-            if(board2[charNum - 65][y] == 0 )
-            {
-                board2[charNum - 65][y] = 6; //Sets location to an 'X', indicating a missed strike on the array.
-            }
-            else
-            {
-                board2[charNum - 65][y] = 8; //The location in the player's board is both a "Hit" and a "Boat" (M = Mixed).
-            }
+			board[charNum - 65][y] = 6; //Sets the hit location to a ' '.
 			System.out.println("Hit");
 			return true;
 		}
 		else
 		{
-            if(board2[charNum - 65][y] == 0)
-            {
-                board2[charNum - 65][y] = 7; //Sets location to an 'X', indicating a missed strike on the array.
-            }
+            board[charNum - 65][y] = 7; //Sets location to an 'X', indicating a missed strike on the array.
 			System.out.println("Miss.");
 			return false;
 		}

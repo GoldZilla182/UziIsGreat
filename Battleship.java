@@ -166,9 +166,11 @@ public class Battleship
 				while(inGame)
 				{
 					//Striking phase - Player 1 turn.
+					System.out.println("It is " + p1.getName() + "'s turn to launch a missle.");
 					b1.printBoard();
-					System.out.println("It is " + p1.getName() + "'s turn to launch a missle." + "\n" 
-					+ "Enter the letter corresponding to your chosen row.");
+					System.out.println("Your launches: ");
+					b2.printStatusBoard();
+					System.out.println("Enter the letter corresponding to your chosen row.");
 					x = kb.nextLine().toUpperCase();
 					System.out.println("Enter the number corresponding to your chosen column");
 					y = kb.nextInt();
@@ -177,7 +179,7 @@ public class Battleship
 					//Only if a user has hit a water-craft - is further investigation required.
 					//William
 					boolean fleetStatus = true;
-					if(b1.checkStrike(x, y, b2.getBoard(), b1.getBoard()))
+					if(b1.checkStrike(x, y, b2.getBoard()))
 					{
 						b1.trueStrike(b2.getBoard(), b2.getAllFleet());
 						for(int i = 4; i > -1; i--)
@@ -213,16 +215,18 @@ public class Battleship
 					}
 				
 					//Player 2 turn
+					System.out.println("It is " + p2.getName() + "'s turn to launch a missle.");
 					b2.printBoard();
-					System.out.println("It is " + p2.getName() + "'s turn to launch a missle." + "\n" 
-					+ "Enter the letter corresponding to your chosen row.");
+					System.out.println("Your launches: ");
+					b1.printStatusBoard();
+					System.out.println("Enter the letter corresponding to your chosen row.");
 					x = kb.nextLine().toUpperCase();
 					System.out.println("Enter the number corresponding to your chosen column");
 					y = kb.nextInt();
 					kb.nextLine();
 					
 					boolean fleetStatus1 = true;
-					if(b2.checkStrike(x, y, b1.getBoard(), b2.getBoard()))
+					if(b2.checkStrike(x, y, b1.getBoard()))
 					{
 						b2.trueStrike(b1.getBoard(), b1.getAllFleet());
 						for(int i = 4; i > -1; i--)
