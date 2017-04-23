@@ -286,13 +286,17 @@ public class Board
 			System.out.println("Hit");
 			return true;
 		}
-		else
+		else if (board[charNum - 65][y] == 0)
 		{
             board[charNum - 65][y] = 7; //Sets location to an 'X', indicating a missed strike on the array.
 			System.out.println("Miss.");
 			return false;
 		}
-		
+		else
+        {
+            System.out.println("Position already destroyed.");
+            return false;
+        }
 		
 	}
 	//A strike has occurred, method to investigate entire fleet status - William
